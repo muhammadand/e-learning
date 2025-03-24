@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('name'); // Nama pengguna
             $table->string('email')->unique(); // Email unik
             $table->string('password'); // Password
-            $table->enum('role', ['akademik', 'dosen', 'mahasiswa']); // Peran pengguna
+            $table->enum('role', ['akademik', 'dosen', 'mahasiswa','program_studi']); // Peran pengguna
             $table->timestamps(); // created_at & updated_at otomatis
         });
     }

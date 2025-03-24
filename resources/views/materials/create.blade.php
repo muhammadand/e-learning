@@ -29,16 +29,17 @@
             </select>
         </div>
 
-        <!-- Pilih CPMK -->
+        <!-- Pilih Sub-CPMK -->
         <div class="mb-3">
-            <label for="cpmk_id" class="form-label">CPMK</label>
-            <select name="cpmk_id" id="cpmk_id" class="form-control">
-                <option value="">-- Pilih CPMK --</option>
-                @foreach ($cpmks as $cpmk)
-                    <option value="{{ $cpmk->id }}" data-course="{{ $cpmk->course_id }}">
-                        {{ $cpmk->code }} - {{ $cpmk->course->name }} - {{ $cpmk->description }}
-                    </option>
-                @endforeach
+            <label for="sub_cpmk_id" class="form-label">Sub-CPMK</label>
+            <select name="sub_cpmk_id" id="sub_cpmk_id" class="form-control">
+                @foreach ($subCpmks as $subCpmk)
+                <option value="{{ $subCpmk->id }}" data-course="{{ $subCpmk->cpmk?->course?->id }}">
+                    {{ $subCpmk->code }} - {{ $subCpmk->cpmk?->course?->name ?? 'Mata Kuliah Tidak Ditemukan' }} - {{ $subCpmk->description }}
+                </option>
+            @endforeach
+            
+            
             </select>
         </div>
 
@@ -46,20 +47,20 @@
     </form>
 </div>
 
-<!-- JavaScript untuk Filter CPMK Tanpa AJAX -->
+<!-- JavaScript untuk Filter Sub-CPMK Tanpa AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#course_id').change(function() {
             let selectedCourse = $(this).val();
-            $('#cpmk_id option').each(function() {
+            $('#sub_cpmk_id option').each(function() {
                 if ($(this).data('course') == selectedCourse || $(this).val() == '') {
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
             });
-            $('#cpmk_id').val('');
+            $('#sub_cpmk_id').val('');
         });
     });
 </script>

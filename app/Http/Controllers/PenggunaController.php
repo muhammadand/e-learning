@@ -15,8 +15,28 @@ class PenggunaController extends Controller
 // }
 public function index()
 {
+    
+    return view('home.visi');
+}
+public function courses()
+{
     $courses = Course::with(['studyProgram', 'user'])->get();
-    return view('home', compact('courses'));
+    return view('home.courses', compact('courses'));
+}
+public function contact()
+{
+    
+    return view('home.contact');
+}
+public function misi()
+{
+    
+    return view('home.misi');
+}
+public function about()
+{
+    
+    return view('home.about');
 }
 
 

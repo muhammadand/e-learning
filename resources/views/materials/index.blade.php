@@ -11,6 +11,14 @@
     <div class="text-right mt-4 mb-4">
         <a href="{{ route('materials.create') }}" class="btn btn-sm btn-primary shadow">+ Tambah Materi</a>
     </div>
+
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="row">
         @foreach ($courses as $course)
             <div class="col-lg-6 col-md-12">
@@ -30,13 +38,17 @@
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">{{ $material->title }}</div>
                                             <p class="small text-muted">{{ $material->description }}</p>
-                                            <small class="badge bg-secondary">CPMK: {{ $material->cpmk->code }}</small>
+                                            
+                                            @if($material->subCpmk)
+                                                <small class="badge bg-secondary">Sub-CPMK: {{ $material->subCpmk->code }}</small>
+                                            @else
+                                                <small class="badge bg-warning">Sub-CPMK: Tidak Ada</small>
+                                            @endif
                                         </div>
                                         <div class="d-flex flex-column gap-1">
                                             @if($material->file_path)
                                                 <a href="{{ asset('storage/' . $material->file_path) }}" class="btn btn-sm btn-outline-success" target="_blank">Download</a>
                                             @endif
-                                            <a href="{{ route('materials.show', $material->id) }}" class="btn btn-sm btn-outline-info">Lihat</a>
                                             <a href="{{ route('materials.edit', $material->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
                                             <form action="{{ route('materials.destroy', $material->id) }}" method="POST" class="d-inline">
                                                 @csrf @method('DELETE')

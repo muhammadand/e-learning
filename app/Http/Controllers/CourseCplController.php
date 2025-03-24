@@ -37,6 +37,6 @@ class CourseCplController extends Controller
         $course = Course::findOrFail($request->course_id);
         $course->cpls()->sync($request->cpl_ids);
 
-        return redirect()->route('course_cpl.index')->with('success', 'Relasi Course-CPL berhasil diperbarui!');
+        return redirect()->route('cpmks.create')->with('success', 'Relasi Course-CPL berhasil diperbarui!');
     }
 }

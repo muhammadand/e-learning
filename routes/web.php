@@ -23,12 +23,37 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizQuestionController;
 use App\Http\Controllers\QuizAttemptController;
 use App\Http\Controllers\QuizAnswerController;
+use App\Http\Controllers\SubCpmkController;
+use App\Models\SubCpmk;
 
-Route::prefix('cpmk/{cpmk_id}')->group(function () {
+
+Route::get('/home/courses', [PenggunaController::class, 'courses'])->name('courses');
+Route::get('/home/contact', [PenggunaController::class, 'contact'])->name('contact');
+Route::get('/misi', [PenggunaController::class, 'misi'])->name('misi');
+Route::get('/home/about', [PenggunaController::class, 'about'])->name('about');
+
+Route::get('/courses/{id}/report', [CourseController::class, 'report'])->name('courses.report');
+
+Route::post('/materials/{id}/mark-as-done', [MaterialController::class, 'markAsDone'])
+    ->name('materials.markAsDone');
+
+Route::resource('sub_cpmks', SubCpmkController::class);
+Route::get('/materials/{subCpmkId}', function ($subCpmkId) {
+    $subCpmk = SubCpmk::with('materials')->findOrFail($subCpmkId);
+    return view('courses.materials', compact('subCpmk'));
+});
+Route::get('/quizzes/{subCpmkId}', [QuizController::class, 'quiz'])->name('quizzes.index');
+Route::get('/quiz/{quizId}', [QuizController::class, 'show'])->name('quizzes.show');
+
+Route::get('/materials/{subCpmk}', [MaterialController::class, 'show'])->name('materials.show');
+Route::get('/materials/{id}/detail', [MaterialController::class, 'detail'])->name('materials.detail');
+
+Route::prefix('sub-cpmk/{sub_cpmk_id}')->group(function () {
     Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
     Route::get('quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
     Route::post('quizzes', [QuizController::class, 'store'])->name('quizzes.store');
 });
+
 Route::get('/quizzes/report/{quiz_id}', [QuizController::class, 'report'])->name('quiz.report');
 Route::get('/quizzes/report/detail/{attempt_id}', [QuizController::class, 'detailReport'])->name('quiz.detail');
 Route::get('/quiz/{quiz_id}/detail/{user_id}', [QuizController::class, 'detail'])->name('quiz.detail');
@@ -44,11 +69,13 @@ Route::prefix('quiz/{quiz_id}')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/quizzes/{quiz_id}/start', [QuizAttemptController::class, 'start'])->name('quizzes.start');
+    Route::get('/quizzes/{quiz_id}/mulai', [QuizAttemptController::class, 'mulai'])->name('quizzes.mulai');
     Route::post('/quizzes/attempt', [QuizAttemptController::class, 'store'])->name('quizzes.attempt.store');
 });
-Route::get('/quiz/completed', function () {
-    return view('quizzes.completed');
-})->name('quiz.completed');
+Route::get('/quiz/completed/done', [QuizAttemptController::class, 'quizCompleted'])->name('quiz.completed');
+
+
+
 
 
 Route::post('answers/store', [QuizAnswerController::class, 'store'])->name('answers.store');
@@ -62,23 +89,22 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/feedback/store', [CourseFeedbackController::class, 'store'])->name('feedback.store');
 });
 
-Route::get('/', [PenggunaController::class, 'index'])->name('home');
+Route::get('/', [PenggunaController::class, 'index'])->name('home.index');
 
 Route::get('/cpmk/{cpmkId}/materials', [MaterialController::class, 'getMaterials']);
 
 Route::post('/progress/complete/{materialId}', [ProgressController::class, 'complete'])->name('progress.complete');
 Route::get('/progress/status/{courseId}', [ProgressController::class, 'getProgress'])->name('progress.status');
 
-Route::get('/rps', [RpsController::class, 'index'])->name('rps.index')->middleware('auth');
+// Route::get('/rps', [RpsController::class, 'index'])->name('rps.index')->middleware('auth');
 Route::get('/rps/{course}', [RpsController::class, 'show'])->name('rps.show');
 
 Route::get('/cpmk/{id}/materials', [CpmkController::class, 'getMaterials']);
 
-
-Route::get('/materials/index', [MaterialController::class, 'index'])->name('materials.index'); // Menampilkan daftar materi
-Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create'); // Form tambah materi
-Route::post('/materials/store', [MaterialController::class, 'store'])->name('materials.store'); // Simpan materi baru
-Route::get('/materials/{id}', [MaterialController::class, 'show'])->name('materials.show'); // Detail materi
+Route::resource('materials', MaterialController::class);
+Route::get('/material/index', [MaterialController::class, 'index'])->name('materials.index'); // Menampilkan daftar materi
+Route::get('/materials/create/materi', [MaterialController::class, 'create'])->name('materials.create'); // Form tambah materi
+Route::post('/materials/store', [MaterialController::class, 'store'])->name('materials.store'); // Simpan materi baru // Detail materi
 Route::get('/materials/{id}/edit', [MaterialController::class, 'edit'])->name('materials.edit'); // Form edit materi
 Route::put('/materials/{id}', [MaterialController::class, 'update'])->name('materials.update'); // Update materi
 Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('materials.destroy'); // Hapus materi

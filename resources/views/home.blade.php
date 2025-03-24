@@ -107,23 +107,24 @@
         <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
           <div class="nav-item dropdown">
             <a
-              href="#"
+              href="{{route('home.index')}}"
               class="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
               >Home</a
             >
             <div class="dropdown-menu bg-light border-0 m-0">
-              <a href="feature.html" class="dropdown-item">Our Vision</a>
-              <a href="appointment.html" class="dropdown-item">Our Mission</a>
+              
+              <a href="{{route('misi')}}" class="dropdown-item">Our Mission</a>
             </div>
           </div>
-          <a href="about.html" class="nav-item nav-link">About Us</a>
-          <a href="service.html" class="nav-item nav-link">Courses</a>
-          
-          <a href="contact.html" class="nav-item nav-link">Dashboard</a>
+          <a href="{{route('about')}}" class="nav-item nav-link">About Us</a>
+          <a href="{{route('courses')}}" class="nav-item nav-link">Courses</a>
+          <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
+          <a href="{{route('admin.dashboard')}}" class="nav-item nav-link">Dashboard</a>
         </div>
+        <a href="{{route('login')}}" class="btn btn-primary px-3 d-none d-lg-block">Login</a>
       </div>
-      <a href="{{route('login')}}" class="btn btn-primary px-3 d-none d-lg-block">Login</a>
+  
     </nav>
     <!-- Navbar End -->
 
@@ -132,7 +133,8 @@
       <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="w-100" src="img/carousel-1.jpg" alt="Image" />
+            <img class="w-100" src="{{ asset('img/hero.jpg') }}" alt="Image">
+
             <div class="carousel-caption">
               <div class="container">
                 <div class="row">
@@ -153,7 +155,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="w-100" src="img/carousel-2.jpg" alt="Image" />
+            <img class="w-100" src="{{ asset('img/hero3.jpg') }}" alt="Image" />
             <div class="carousel-caption">
               <div class="container">
                 <div class="row">
@@ -199,366 +201,12 @@
 
 
 
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="text-center mx-auto" style="max-width: 500px">
-          <h1 class="display-6 mb-5">
-            Courses
-          </h1>
-        </div>
-        <div class="row g-4 justify-content-center">
-        @foreach ($courses as $course)
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div
-                  class="service-icon flex-shrink-0 bg-primary rounded-end me-4"
-                >
-                  <img
-                    class="img-fluid"
-                    src="img/icon/icon-01-light.png"
-                    alt=""
-                  />
-                </div>
-                <h4 class="mb-0">{{ $course->name }}</h4>
-              </div>
-              <p class="mb-4">
-                {{ $course->short_description }}
-              </p>
-              <p>
-                <a class="text-primary" href="#">{{ $course->user->name }}</a>
-              </p>
-              <a class="btn btn-light px-3" href="{{ route('courses.show', $course->id) }}">Start Learning</a>
-            </div>
-          </div>
-          @endforeach
-         
-          
-          
-         
-        </div>
-      </div>
-    </div>
-    <!-- Service End -->
+    
 
-    <!-- Appointment Start -->
-    <div
-      class="container-fluid appointment my-5 py-5 wow fadeIn"
-      data-wow-delay="0.1s"
-    >
-      <div class="container py-5">
-        <div class="row g-5">
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-            <h1 class="display-6 text-white mb-5">
-              We're Award Winning Insurance Company
-            </h1>
-            <p class="text-white mb-5">
-              Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
-              stet lorem sit clita duo justo magna dolore erat amet. Tempor erat
-              elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-              diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-              clita duo justo magna.
-            </p>
-            <div class="bg-white rounded p-3">
-              <div class="d-flex align-items-center bg-primary rounded p-3">
-                <img
-                  class="flex-shrink-0 rounded-circle me-3"
-                  src="img/profile.jpg"
-                  alt=""
-                />
-                <h5 class="text-white mb-0">Call Us: +012 345 6789</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-            <div class="bg-white rounded p-5">
-              <form>
-                <div class="row g-3">
-                  <div class="col-sm-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="gname"
-                        placeholder="Gurdian Name"
-                      />
-                      <label for="gname">Your Name</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-floating">
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="gmail"
-                        placeholder="Gurdian Email"
-                      />
-                      <label for="gmail">Your Email</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="cname"
-                        placeholder="Child Name"
-                      />
-                      <label for="cname">Your Mobile</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="cage"
-                        placeholder="Child Age"
-                      />
-                      <label for="cage">Service Type</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating">
-                      <textarea
-                        class="form-control"
-                        placeholder="Leave a message here"
-                        id="message"
-                        style="height: 80px"
-                      ></textarea>
-                      <label for="message">Message</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-primary py-3 px-5" type="submit">
-                      Get Appointment
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Appointment End -->
+    @yield('content')
 
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="text-center mx-auto" style="max-width: 500px">
-          <h1 class="display-6 mb-5">Meet Our Professional Team Members</h1>
-        </div>
-        <div class="row g-4">
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="team-item rounded">
-              <img class="img-fluid" src="img/team-1.jpg" alt="" />
-              <div class="text-center p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-              <div class="team-text text-center bg-white p-4">
-                <h5>Full Name</h5>
-                <p>Designation</p>
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-youtube"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-item rounded">
-              <img class="img-fluid" src="img/team-2.jpg" alt="" />
-              <div class="text-center p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-              <div class="team-text text-center bg-white p-4">
-                <h5>Full Name</h5>
-                <p>Designation</p>
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-youtube"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="team-item rounded">
-              <img class="img-fluid" src="img/team-3.jpg" alt="" />
-              <div class="text-center p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-              <div class="team-text text-center bg-white p-4">
-                <h5>Full Name</h5>
-                <p>Designation</p>
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-youtube"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-            <div class="team-item rounded">
-              <img class="img-fluid" src="img/team-4.jpg" alt="" />
-              <div class="text-center p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-              <div class="team-text text-center bg-white p-4">
-                <h5>Full Name</h5>
-                <p>Designation</p>
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-youtube"></i
-                  ></a>
-                  <a class="btn btn-square btn-light m-1" href=""
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Team End -->
 
-    <!-- Testimonial Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="text-center mx-auto" style="max-width: 500px">
-          <h1 class="display-6 mb-5">What They Say About Our Insurance</h1>
-        </div>
-        <div class="row g-5">
-          <div class="col-lg-3 d-none d-lg-block">
-            <div class="testimonial-left h-100">
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-1.jpg"
-                alt=""
-              />
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-2.jpg"
-                alt=""
-              />
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-3.jpg"
-                alt=""
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-            <div class="owl-carousel testimonial-carousel">
-              <div class="testimonial-item text-center">
-                <img
-                  class="img-fluid rounded mx-auto mb-4"
-                  src="img/testimonial-1.jpg"
-                  alt=""
-                />
-                <p class="fs-5">
-                  Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                  labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy
-                  et labore et tempor diam tempor erat.
-                </p>
-                <h5>Client Name</h5>
-                <span>Profession</span>
-              </div>
-              <div class="testimonial-item text-center">
-                <img
-                  class="img-fluid rounded mx-auto mb-4"
-                  src="img/testimonial-2.jpg"
-                  alt=""
-                />
-                <p class="fs-5">
-                  Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                  labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy
-                  et labore et tempor diam tempor erat.
-                </p>
-                <h5>Client Name</h5>
-                <span>Profession</span>
-              </div>
-              <div class="testimonial-item text-center">
-                <img
-                  class="img-fluid rounded mx-auto mb-4"
-                  src="img/testimonial-3.jpg"
-                  alt=""
-                />
-                <p class="fs-5">
-                  Dolores sed duo clita tempor justo dolor et stet lorem kasd
-                  labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy
-                  et labore et tempor diam tempor erat.
-                </p>
-                <h5>Client Name</h5>
-                <span>Profession</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 d-none d-lg-block">
-            <div class="testimonial-right h-100">
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-1.jpg"
-                alt=""
-              />
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-2.jpg"
-                alt=""
-              />
-              <img
-                class="img-fluid animated pulse infinite"
-                src="img/testimonial-3.jpg"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Testimonial End -->
+    
 
     <!-- Footer Start -->
     <div

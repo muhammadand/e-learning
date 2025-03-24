@@ -37,6 +37,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Faculty::class, 'faculty_id');
     }
+    public function progress()
+    {
+        return $this->hasMany(UserProgress::class, 'user_id');
+    }
+    
+
 
 
 }

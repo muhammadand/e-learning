@@ -73,7 +73,7 @@ class CpmkController extends Controller
             }
         });
     
-        return redirect()->route('cpmks.index')->with('success', 'CPMK berhasil ditambahkan dan langsung terhubung dengan CPL.');
+        return redirect()->route('sub_cpmks.create')->with('success', 'CPMK berhasil ditambahkan dan langsung terhubung dengan CPL.');
     }
 
     public function show(Cpmk $cpmk)

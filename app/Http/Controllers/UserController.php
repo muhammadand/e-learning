@@ -37,7 +37,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|unique:users|email|max:255',
             'password' => 'required|min:6',
-            'role' => 'required|in:dosen,mahasiswa,akademik',
+            'role' => 'required|in:dosen,mahasiswa,akademik,program_studi',
         ]);
 
         User::create([
@@ -78,7 +78,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6',
-            'role' => 'required|in:dosen,mahasiswa,akademik',
+            'role' => 'required|in:dosen,mahasiswa,akademik,program_studi',
         ]);
 
         $data = [

@@ -62,7 +62,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('courses.index')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-users"></i>
+                  <i class="ti ti-book"></i>
 
                 </span>
                 <span class="hide-menu">Courses</span>
@@ -71,14 +71,14 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('courses.enrol')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-users"></i>
+                  <i class="ti ti-user-plus"></i>
 
                 </span>
                 <span class="hide-menu">Enrol Courses</span>
               </a>
             </li>
            
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('cpmks.index')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -86,8 +86,8 @@
                 </span>
                 <span class="hide-menu">CPMK</span>
               </a>
-            </li>
-            <li class="sidebar-item">
+            </li> --}}
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('course_cpl.index')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -95,7 +95,7 @@
                 </span>
                 <span class="hide-menu">Course-CPL</span>
               </a>
-            </li>
+            </li> --}}
             {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('cpl_cpmk.index')}}" aria-expanded="false">
                 <span>
@@ -105,7 +105,7 @@
                 <span class="hide-menu">CPL-CPMK</span>
               </a>
             </li> --}}
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('materials.index')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -113,7 +113,7 @@
                 </span>
                 <span class="hide-menu">Materials</span>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">KELOLA AKDEMIK</span>
@@ -130,7 +130,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('faculties.index')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-layout-dashboard"></i>
+                  <i class="ti ti-building"></i>
                 </span>
                 <span class="hide-menu">Fakultas</span>
               </a>
@@ -138,21 +138,11 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('study_programs.index')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-layout-dashboard"></i>
+                  <i class="ti ti-school"></i>
                 </span>
                 <span class="hide-menu">Program study</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('cpls.index')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-users"></i>
-
-                </span>
-                <span class="hide-menu">CPL</span>
-              </a>
-            </li>
-          
 
          
         
@@ -174,52 +164,7 @@
 
             
 
-            <li class="nav-item dropdown">
-              <a class="nav-link nav-icon-hover" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="ti ti-bell-ringing"></i>
-                 
-              </a>
-          
-              <ul class="dropdown-menu dropdown-menu-start shadow border-0 rounded-3 overflow-hidden" aria-labelledby="notificationDropdown" style="min-width: 350px;">
-                
-                      <!-- Header -->
-                      <li class="dropdown-header bg-primary text-white text-center fw-bold py-2">
-                          <i class="ti ti-bell fs-5 me-2"></i> Notifications
-                      </li>
-          
-                      <li><div class="dropdown-divider m-0"></div></li>
-          
-                      <!-- List of Notifications -->
-                     
-                          <li>
-                              <a href="" class="dropdown-item d-flex align-items-center gap-3 py-3">
-                                  <div class="bg-warning text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 35px; height: 35px;">
-                                      <i class="ti ti-alert-circle fs-6"></i>
-                                  </div>
-                                  <span class="text-wrap flex-grow-1"></span>
-                              </a>
-                          </li>
-                 
-                      <li><div class="dropdown-divider m-0"></div></li>
-          
-                      <!-- Footer -->
-                      <li>
-                          <a class="dropdown-item text-center text-primary fw-bold py-3" href="#">
-                              <i class="ti ti-eye fs-6 me-1"></i> See All Notifications
-                          </a>
-                      </li>
-                
-                      <!-- Jika tidak ada notifikasi -->
-                      <li class="dropdown-header bg-secondary text-white text-center fw-bold py-2">
-                          <i class="ti ti-bell-off fs-5 me-2"></i> Notifications
-                      </li>
-                      <li><div class="dropdown-divider"></div></li>
-                      <li class="text-center text-muted py-4">
-                          <i class="ti ti-circle-x fs-5 me-1"></i> No notifications available
-                      </li>
-                 
-              </ul>
-          </li>          
+             
           </ul>
           
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">

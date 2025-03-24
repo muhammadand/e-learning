@@ -66,13 +66,23 @@ public function cpmk()
     {
         return $this->hasMany(Cpmk::class);
     }
+    public function subCpmks()
+    {
+        return $this->hasMany(SubCpmk::class, 'course_id');
+    }
 
+    public function userProgress()
+    {
+        return $this->hasManyThrough(UserProgress::class, SubCpmk::class, 'cpmk_id', 'sub_cpmk_id', 'id', 'id');
+    }
 
-public function progress()
-{
-    return $this->hasMany(MaterialUserProgress::class, 'course_id');
-}
+    
 
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class, 'course_id');
+    }
+    
 public function feedback()
 {
     return $this->hasMany(CourseFeedback::class, 'course_id');
@@ -100,40 +110,40 @@ public function getProgressPercentageAttribute()
     return ($completedMaterials / $totalMaterials) * 100;
 }
 
-    public function usersInProgress()
-    {
-        // Ambil semua user yang memiliki progress pada kursus ini
-        $userIds = MaterialUserProgress::whereHas('material', function ($query) {
-            $query->whereHas('cpmk', function ($query) {
-                $query->whereHas('cpl', function ($query) {
-                    $query->where('course_id', $this->id);
-                });
-            });
-        })->distinct()->pluck('user_id');
+    // public function usersInProgress()
+    // {
+    //     // Ambil semua user yang memiliki progress pada kursus ini
+    //     $userIds = MaterialUserProgress::whereHas('material', function ($query) {
+    //         $query->whereHas('cpmk', function ($query) {
+    //             $query->whereHas('cpl', function ($query) {
+    //                 $query->where('course_id', $this->id);
+    //             });
+    //         });
+    //     })->distinct()->pluck('user_id');
 
-        // Hitung jumlah user yang memiliki progress lebih dari 0% tetapi kurang dari 100%
-        $count = 0;
-        foreach ($userIds as $userId) {
-            $user = User::find($userId);
-            $totalMaterials = $this->cpls->flatMap->cpmks->flatMap->materials->count();
+    //     // Hitung jumlah user yang memiliki progress lebih dari 0% tetapi kurang dari 100%
+    //     $count = 0;
+    //     foreach ($userIds as $userId) {
+    //         $user = User::find($userId);
+    //         $totalMaterials = $this->cpls->flatMap->cpmks->flatMap->materials->count();
 
-            if ($totalMaterials === 0) {
-                continue;
-            }
+    //         if ($totalMaterials === 0) {
+    //             continue;
+    //         }
 
-            $completedMaterials = MaterialUserProgress::where('user_id', $userId)
-                ->whereIn('material_id', $this->cpls->flatMap->cpmks->flatMap->materials->pluck('id'))
-                ->count();
+    //         $completedMaterials = MaterialUserProgress::where('user_id', $userId)
+    //             ->whereIn('material_id', $this->cpls->flatMap->cpmks->flatMap->materials->pluck('id'))
+    //             ->count();
 
-            $progress = ($completedMaterials / $totalMaterials) * 100;
+    //         $progress = ($completedMaterials / $totalMaterials) * 100;
 
-            if ($progress > 0 && $progress < 100) {
-                $count++;
-            }
-        }
+    //         if ($progress > 0 && $progress < 100) {
+    //             $count++;
+    //         }
+    //     }
 
-        return $count;
-    }
+    //     return $count;
+    // }
 
 
 

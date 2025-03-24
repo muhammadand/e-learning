@@ -13,9 +13,16 @@
             <label for="study_program_id" class="form-label">Program Studi</label>
             <select name="study_program_id" class="form-control" required>
                 @foreach ($studyPrograms as $program)
-                    <option value="{{ $program->id }}" {{ $course->study_program_id == $program->id ? 'selected' : '' }}>
-                        {{ $program->name }}
-                    </option>
+                    <option value="{{ $program->id }}" {{ $course->study_program_id == $program->id ? 'selected' : '' }}>{{ $program->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="user_id" class="form-label">Dosen Pengampu</label>
+            <select name="user_id" class="form-control" required>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ $course->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -30,7 +37,32 @@
             <input type="text" name="name" class="form-control" value="{{ $course->name }}" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Update</button>
+        <div class="mb-3">
+            <label for="sks" class="form-label">SKS</label>
+            <input type="number" name="sks" class="form-control" value="{{ $course->sks }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <input type="number" name="semester" class="form-control" value="{{ $course->semester }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="tgl_penyusunan" class="form-label">Tanggal Penyusunan</label>
+            <input type="date" name="tgl_penyusunan" class="form-control" value="{{ $course->tgl_penyusunan }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="short_description" class="form-label">Deskripsi Singkat</label>
+            <textarea name="short_description" class="form-control">{{ $course->short_description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="learning_materials" class="form-label">Bahan Kajian</label>
+            <textarea name="learning_materials" class="form-control">{{ $course->learning_materials }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Perbarui</button>
     </form>
 </div>
 @endsection

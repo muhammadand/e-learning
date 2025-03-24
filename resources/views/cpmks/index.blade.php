@@ -33,7 +33,7 @@
                     <td>{{ $cpmk->description }}</td>
                     <td>{{ $cpmk->cpl->code }}</td>
                     <td>{{ $cpmk->course->name }}</td>
-                    
+                  
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,11 +50,11 @@
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a class="dropdown-item" href="{{ route('quizzes.index', ['cpmk_id' => $cpmk->id]) }}">
                                         <i class="fas fa-book"></i> Quizzes
                                     </a>
-                                </li>
+                                </li> --}}
 
                                 <li>
                                     <form action="{{ route('cpmks.destroy', $cpmk->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">

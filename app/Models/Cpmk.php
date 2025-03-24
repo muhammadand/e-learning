@@ -26,6 +26,7 @@ class Cpmk extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+
     /**
      * Relasi ke CPL (Satu CPMK hanya memiliki satu CPL).
      */
@@ -45,4 +46,9 @@ class Cpmk extends Model
     {
         return $this->hasMany(Material::class);
     }
+    public function subCpmks()
+{
+    return $this->hasMany(SubCpmk::class, 'cpmk_id');
+}
+
 }

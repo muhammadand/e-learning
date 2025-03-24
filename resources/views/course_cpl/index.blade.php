@@ -3,7 +3,11 @@
 @section('content')
 <div class="container-fluid">
     <h1>Relasi Course → CPL</h1>
-    <a href="{{ route('course_cpl.create') }}" class="btn btn-primary mb-3">Tambah Relasi</a>
+  
+    <div class="d-flex">
+        <a href="{{ route('course_cpl.create') }}" class="btn btn-primary mb-3">Create Relation</a>
+        <a href="{{route('cpmks.index')}}" class="btn btn-warning mb-3 ms-3">Create CPMK</a>
+    </div>
 
     @if ($courses->isEmpty())
         <p class="text-muted">Belum ada data Course dan CPL.</p>

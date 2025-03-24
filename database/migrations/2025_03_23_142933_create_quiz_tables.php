@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        // Tabel quizzes (Informasi kuis untuk setiap CPMK)
+        // Tabel quizzes (Informasi kuis untuk setiap sub CPMK)
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cpmk_id')->constrained()->onDelete('cascade'); // Relasi ke CPMK
+            $table->foreignId('sub_cpmk_id')->constrained('sub_cpmks')->onDelete('cascade'); // Relasi ke sub CPMK
             $table->string('title'); // Judul kuis
             $table->text('description')->nullable(); // Deskripsi kuis (opsional)
             $table->timestamps();
@@ -37,7 +37,6 @@ return new class extends Migration {
             $table->integer('score')->nullable(); // Menambahkan kolom score
             $table->timestamps();
         });
-        
 
         // Tabel quiz_answers (Jawaban mahasiswa per pertanyaan)
         Schema::create('quiz_answers', function (Blueprint $table) {

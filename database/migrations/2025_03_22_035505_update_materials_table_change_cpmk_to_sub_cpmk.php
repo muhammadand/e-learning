@@ -9,7 +9,7 @@ return new class extends Migration {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->foreignId('cpmk_id')->constrained()->onDelete('cascade'); // Relasi ke CPMK
+            $table->foreignId('sub_cpmk_id')->constrained('sub_cpmks')->onDelete('cascade'); // Relasi ke Sub CPMK
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('file_path')->nullable();
